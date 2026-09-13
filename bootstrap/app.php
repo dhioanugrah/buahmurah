@@ -37,5 +37,17 @@ return Application::configure(basePath: dirname(__DIR__))
                 ['Content-Type' => 'application/json']
             );
         });
-    })->create()
-    ->useStoragePath(isset($_ENV['VERCEL']) ? '/tmp/storage' : dirname(__DIR__).'/storage');
+    })->create();
+
+if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
+    $storage = '/tmp/storage';
+    if (! is_dir($storage.'/framework/views')) {
+        @mkdir($storage.'/framework/views', 0755, true);
+        @mkdir($storage.'/framework/cache/data', 0755, true);
+        @mkdir($storage.'/framework/sessions', 0755, true);
+        @mkdir($storage.'/logs', 0755, true);
+    }
+    $app->useStoragePath($storage);
+}
+
+return $app;
