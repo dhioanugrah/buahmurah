@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 if (! is_writable(dirname(__DIR__).'/bootstrap/cache')) {
     $_SERVER['APP_PACKAGES_CACHE'] = '/tmp/packages.php';
+    $_ENV['APP_PACKAGES_CACHE'] = '/tmp/packages.php';
+    putenv('APP_PACKAGES_CACHE=/tmp/packages.php');
+    
     $_SERVER['APP_SERVICES_CACHE'] = '/tmp/services.php';
+    $_ENV['APP_SERVICES_CACHE'] = '/tmp/services.php';
+    putenv('APP_SERVICES_CACHE=/tmp/services.php');
 }
 
 return Application::configure(basePath: dirname(__DIR__))
