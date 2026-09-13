@@ -39,7 +39,7 @@ return Application::configure(basePath: dirname(__DIR__))
         });
     })->create();
 
-if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
+if (getenv('VERCEL') !== false || isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
     $storage = '/tmp/storage';
     if (! is_dir($storage.'/framework/views')) {
         @mkdir($storage.'/framework/views', 0755, true);

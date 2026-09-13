@@ -30,7 +30,7 @@ return [
 
     'compiled' => env(
         'VIEW_COMPILED_PATH',
-        isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) 
+        getenv('VERCEL') !== false || isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) 
             ? '/tmp/storage/framework/views' 
             : realpath(storage_path('framework/views'))
     ),
