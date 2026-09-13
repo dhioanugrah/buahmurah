@@ -33,17 +33,6 @@
                 </button>
             </form>
 
-            <div class="mt-6 border-t pt-4 text-xs text-gray-500 space-y-1">
-                <p class="font-bold text-gray-700">Akun Default Demo:</p>
-                <div class="flex justify-between items-center bg-gray-50 p-2 rounded">
-                    <span>Kasir: kasir@buahmurah.id</span>
-                    <button type="button" onclick="document.getElementById('email').value='kasir@buahmurah.id';document.getElementById('password').value='password';" class="text-brand-blue font-semibold hover:underline">Gunakan</button>
-                </div>
-                <div class="flex justify-between items-center bg-gray-50 p-2 rounded">
-                    <span>Manajemen: manajemen@buahmurah.id</span>
-                    <button type="button" onclick="document.getElementById('email').value='manajemen@buahmurah.id';document.getElementById('password').value='password';" class="text-brand-blue font-semibold hover:underline">Gunakan</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
