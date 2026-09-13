@@ -5,6 +5,11 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 
+if (! is_writable(dirname(__DIR__).'/bootstrap/cache')) {
+    $_SERVER['APP_PACKAGES_CACHE'] = '/tmp/packages.php';
+    $_SERVER['APP_SERVICES_CACHE'] = '/tmp/services.php';
+}
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
