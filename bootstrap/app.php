@@ -15,8 +15,17 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => true,
-        );
+        $exceptions->render(function (\Throwable $e, Request $request) {
+            return new \Illuminate\Http\Response(
+                json_encode([
+                    'message' => $e->getMessage(),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
+                    'trace' => $e->getTraceAsString()
+                ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
+                500,
+                ['Content-Type' => 'application/json']
+            );
+        });
     })->create()
     ->useStoragePath(isset($_ENV['VERCEL']) ? '/tmp/storage' : dirname(__DIR__).'/storage');
