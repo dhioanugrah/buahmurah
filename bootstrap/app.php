@@ -48,6 +48,8 @@ if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
         @mkdir($storage.'/logs', 0755, true);
     }
     $app->useStoragePath($storage);
+    $_ENV['VIEW_COMPILED_PATH'] = $storage.'/framework/views';
+    putenv('VIEW_COMPILED_PATH='.$storage.'/framework/views');
 }
 
 return $app;
